@@ -11,7 +11,7 @@ class StoritveItems extends Component {
         <motion.div variants={cardY} className={this.props.className} id={this.props.id}>
             <div className='storitev-text'>
                 <h2>{this.props.heading}</h2>
-                <p>{this.props.text}</p>
+                <pre>{this.props.text}</pre>
             </div>
             <div className='image'>
                 <img src={this.props.img} alt="img" />

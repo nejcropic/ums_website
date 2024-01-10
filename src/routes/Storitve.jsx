@@ -24,6 +24,8 @@ const Storitve = () => {
       };
     */}
 
+    const test='Lorem \r\n ipsum';
+
     return (  
         <>
 		<NavBar />
@@ -39,7 +41,7 @@ const Storitve = () => {
             className="first-storitev"
             id="gr_projekti"
             heading="Gradbeni projekti"
-            text="Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris"
+            text={'Aenean ornare velit lacus, \n ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris'}
             img={Akt_projekti_img}
             />  
             <StoritveItems 
