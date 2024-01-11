@@ -1,0 +1,65 @@
+.kontakt-container{
+    margin: 4rem 6rem;
+    text-align: start;
+    justify-content: center;
+    align-items: center;
+    color: var(--mainColor);
+}
+.kontakt-subcontainer {
+    direction: flex;
+    flex-wrap: wrap;
+    min-height: 240px;
+    max-width: 720px;
+}
+.kontakt-subcontainer h1{
+    padding-bottom: 0rem;
+}
+
+.kontakt-subcontainer p{
+    padding-bottom: 0rem;
+}
+.kontakt-subcontainer .line {
+    width: 120px; /* Adjust the width of the line as needed */
+    height: 2px; /* Make the line cover the full height */
+    background-color: var(--mainColor); /* Adjust the color of the line as needed */
+    margin-right: 10px; /* Adjust the margin to control spacing */
+    display: inline-block; /* Ensure the line doesn't break to a new line */
+    vertical-align: middle; /* Vertically align the line in the middle */
+}
+
+.kontakt-wrapper {
+    float: left;
+    width: 33%;
+    box-sizing: border-box;
+    margin: 0;
+    padding-bottom: 2rem;
+}
+.kontakt-wrapper ul li {
+    line-height: 10px;
+    display: inline;
+    margin-right: 5px;
+}
+.kontakt-wrapper ul li a{
+    color: var(--mainColor);
+}
+.kontakt-wrapper ul li a:hover{
+    color: white;
+    padding: 0.1rem;
+    background-color: var(--mainColor);
+    border-radius: 4px;
+}
+@media screen and (max-width: 850px) {
+    .kontakt-container{
+        margin: 4rem 2rem;
+    }
+    .kontakt-subcontainer {
+        flex-direction: column;
+        min-height: 480px;
+    }
+    .kontakt-wrapper {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 0 0.5rem 0;
+    }
+}
