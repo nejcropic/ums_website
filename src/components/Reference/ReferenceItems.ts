@@ -8,11 +8,12 @@ import image6 from "../../images/devana.webp";
 import image7 from "../../images/dvojcek.webp";
 import image8 from "../../images/brdo_lj.webp";
 import image9 from "../../images/digit.webp";
+import { responsiveImages } from "../../responsiveImages";
 
 export const ReferenceItems = [
   {
     title: "Intercontinental",
-    image: image0,
+    image: image0, responsive: responsiveImages.intercontinental,
     besedilo: "2017",
   },
   {
@@ -27,12 +28,12 @@ export const ReferenceItems = [
   },
   {
     title: "Kvartet Šiška",
-    image: image3,
+    image: image3, responsive: responsiveImages.kvartet_siska,
     besedilo: "2023",
   },
   {
     title: "Planica nordijski center",
-    image: image4,
+    image: image4, responsive: responsiveImages.planica,
     besedilo: "2015",
   },
   {
@@ -47,7 +48,7 @@ export const ReferenceItems = [
   },
   {
     title: "Hiša dvojček",
-    image: image7,
+    image: image7, responsive: responsiveImages.dvojcek,
     besedilo: "2023",
   },
   {

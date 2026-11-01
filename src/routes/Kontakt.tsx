@@ -1,76 +1,17 @@
+import { Link } from "react-router-dom";
+import { Storitve_img } from "../images";
 import "../components/Kontakt/Kontakt.css";
-import { motion } from "framer-motion";
-import { textAnimation } from "../components/Animations";
 
-import Hero from "../components/Hero/Hero";
-import { Mansarda } from "../images";
+const contacts = [
+  { name: "Sašo Ropič", title: "Direktor", qualification: "uni.dipl.ing.str.", phone: "040 619 246", phoneHref: "+38640619246", email: "saso.ropic@ums.si" },
+  { name: "Milan Milović", title: "Vodja projektov", phone: "051 228 443", phoneHref: "+38651228443", email: "info@ums.si" },
+  { name: "Uroš Rutnik", title: "Vodja projektov", phone: "070 894 959", phoneHref: "+38670894959", email: "info@ums.si" },
+];
 
-function Kontakt() {
-  return (
-    <>
-      <Hero
-        cName="hero-mid"
-        heroImg={Mansarda}
-        title="Kontakt"
-        text=""
-      />
-      <motion.div
-        variants={textAnimation}
-        initial={false}
-        animate="show"
-        className="kontakt-container"
-      >
-        <div className="kontakt-subcontainer">
-          <div className="kontakt-wrapper">
-            <h2>Sašo Ropič</h2>
-            <h4>uni.dipl.ing.str.</h4>
-            <p>Direktor</p>
-            <div className="line"></div>
-            <ul>
-              <li>
-                <a href="tel:+38640619246">040 619 246</a>
-              </li>
-              <br />
-              <li>
-                <a href="mailto:saso.ropic@ums.si">saso.ropic@ums.si</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="kontakt-wrapper">
-            <h2>Milan Milovič</h2>
-            <br />
-            <p>Vodja projektov</p>
-            <div className="line"></div>
-            <ul>
-              <li>
-                <a href="tel:+38651228443">051 228 443</a>
-              </li>
-              <br />
-              <li>
-                <a href="mailto:info@ums.si">info@ums.si</a>
-              </li>
-            </ul>
-          </div>
-          <div className="kontakt-wrapper">
-            <h2>Uroš Rutnik</h2>
-            <br />
-            <p>Vodja projektov</p>
-            <div className="line"></div>
-            <ul>
-              <li>
-                <a href="tel:+38670894959">070 894 959</a>
-              </li>
-              <br />
-              <li>
-                <a href="mailto:info@ums.si">info@ums.si</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </motion.div>
-    </>
-  );
+export default function Kontakt() {
+  return <div className="contact-page">
+    <header className="contact-hero"><div className="contact-hero__copy"><p className="contact-eyebrow">UMS STORITVE d.o.o.</p><h1>Stopimo<br /><span>v stik.</span></h1><p>Za pogovor o gradnji, prenovi ali naših storitvah.</p><a className="contact-hero__email" href="mailto:info@ums.si">info@ums.si <span aria-hidden="true">↗</span></a></div><img src={Storitve_img} alt="Gradbena dela na objektu" fetchPriority="high" /></header>
+    <section className="contact-people" aria-label="Kontaktne osebe">{contacts.map(contact => <article className="contact-person" key={contact.name}><p className="contact-eyebrow">{contact.title}</p><h2>{contact.name}</h2>{contact.qualification && <p className="contact-person__qualification">{contact.qualification}</p>}<div className="contact-person__links"><a href={`tel:${contact.phoneHref}`}><span>Telefon</span><strong>{contact.phone}</strong></a><a href={`mailto:${contact.email}`}><span>E-pošta</span><strong>{contact.email}</strong></a></div></article>)}</section>
+    <section className="contact-address"><div><p className="contact-eyebrow">Sedež podjetja</p><h2>UMS STORITVE d.o.o.</h2></div><address>Brodarjev trg 14<br />1000 Ljubljana</address><Link to="/o_podjetju">Več o podjetju <span aria-hidden="true">→</span></Link></section>
+  </div>;
 }
-
-export default Kontakt;

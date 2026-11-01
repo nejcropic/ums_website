@@ -1,62 +1,30 @@
-import { motion } from "framer-motion";
-import { cardAnimation } from "../components/Animations";
+import { Link } from "react-router-dom";
+import { Devana2, Dvojcek, Kvartet_siska, Tem_catez } from "../images";
+import { responsiveImages } from "../responsiveImages";
+import "../components/AktualniProjekti/AktualniProjekti.css";
 
-import Hero from "../components/Hero/Hero";
-import AktualniProjektiItems from "../components/AktualniProjekti/AktualniProjektiItems";
-import { Devana2, Dvojcek, Kvartet_siska, Naslovna, Tem_catez } from "../images";
+const projects = [
+  { name: "Dvojček", location: "Ihan pri Domžalah", description: "Enotna hiša dvojček.", time: "2023", image: Dvojcek, responsive: responsiveImages.dvojcek },
+  { name: "Devana park 2", location: "Ljubljana", description: "Stanovanjski bloki DEVANA PARK II – Ljubljana. Izvedba 5 blokov s 94 stanovanjskimi enotami v 4 etažah.", time: "V izvajanju. Predviden zaključek – maj 2024", image: Devana2 },
+  { name: "Kvartet", location: "Ljubljana – Šiška", description: "Stanovanjski bloki KVARTET Šiška – Ljubljana. Izvedba 2 stolpnic s 120 stanovanjskimi enotami v 15 etažah.", time: "2023", image: Kvartet_siska, responsive: responsiveImages.kvartet_siska },
+  { name: "TEM Čatež", location: "Čatež", description: "Poslovni objekt TEM Čatež.", time: "2023", image: Tem_catez },
+];
 
 function Akt_projekti() {
-  return (
-    <>
-      <Hero
-        cName="hero-mid"
-        heroImg={Naslovna}
-        title="Aktualni projekti"
-        text=""
-      />
-
-      <motion.div
-        variants={cardAnimation}
-        initial={false}
-        animate="show"
-        className="group-wrapper"
-      >
-        <AktualniProjektiItems
-          className="first-storitev"
-          heading="Dvojček"
-          textLokacija="Ihan pri Domžalah"
-          textOpis="Enotna hiša dvojček."
-          textLeto="2023"
-          img={Dvojcek}
-        />
-        <AktualniProjektiItems
-          className="first-storitev-reverse"
-          heading="Devana park 2"
-          textLokacija="Ljubljana"
-          textOpis="Stanovanjski bloki DEVANA PARK II - Ljubljana. Izvedba 5 blokov v katerih je 94 stanovanjskih enot v 4 etažah"
-          textLeto="V izvajanju. Predviden zaključek - maj 2024"
-          img={Devana2}
-        />
-        <AktualniProjektiItems
-          className="first-storitev-reverse"
-          heading="Kvartet"
-          textLokacija="Ljubljana - Šiška"
-          textOpis="Stanovanjski bloki KVARTET Šiška - Ljubljana. Izvedba 2 stolpnic v katerih je 120 stanovanjskih enot v 15 etažah."
-          textLeto="2023"
-          img={Kvartet_siska}
-        />
-        <AktualniProjektiItems
-          className="first-storitev-reverse"
-          heading="TEM Čatež"
-          textLokacija="Čatež"
-          textOpis="Poslovni objekt TEM Čatež"
-          textLeto="2023"
-          img={Tem_catez}
-        />
-      </motion.div>
-
-    </>
-  );
+  const featured = projects[0];
+  return <div className="projects-page">
+    <header className="projects-hero">
+      <div className="projects-hero__copy"><p className="projects-eyebrow">UMS / Gradnja in inženiring</p><h1>Aktualni<br /><span>projekti</span></h1><p>Izbor projektov iz obstoječega pregleda UMS.</p></div>
+      <img src={featured.image} {...(featured.responsive ? { srcSet: featured.responsive.srcSet, width: featured.responsive.width, height: featured.responsive.height } : {})} sizes="(max-width: 760px) 100vw, 58vw" fetchPriority="high" alt="Hiša dvojček" />
+    </header>
+    <section className="projects-list" aria-label="Pregled projektov">
+      {projects.map((project, index) => <article className={`project-entry${index === 0 ? " project-entry--featured" : ""}`} key={project.name}>
+        <div className="project-entry__image"><img src={project.image} {...(project.responsive ? { srcSet: project.responsive.srcSet, width: project.responsive.width, height: project.responsive.height } : {})} sizes="(max-width: 760px) 100vw, 50vw" loading={index === 0 ? "eager" : "lazy"} decoding="async" alt={project.name} /></div>
+        <div className="project-entry__body"><p className="projects-eyebrow">Projekt / 0{index + 1}</p><h2>{project.name}</h2><dl><div><dt>Lokacija</dt><dd>{project.location}</dd></div><div><dt>Opis</dt><dd>{project.description}</dd></div><div><dt>Časovni podatek iz obstoječe vsebine</dt><dd>{project.time}</dd></div></dl></div>
+      </article>)}
+    </section>
+    <section className="projects-next"><div><p className="projects-eyebrow">Nadaljujte</p><h2>Več o projektih UMS</h2></div><div><Link to="/reference">Oglejte si reference <span aria-hidden="true">→</span></Link><Link to="/kontakt">Pogovorimo se o vašem projektu <span aria-hidden="true">↗</span></Link></div></section>
+  </div>;
 }
 
 export default Akt_projekti;
