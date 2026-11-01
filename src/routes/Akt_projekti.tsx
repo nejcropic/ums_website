@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
 import { cardAnimation } from "../components/Animations";
 
-import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
-import Footer from "../components/Footer/Footer";
 import AktualniProjektiItems from "../components/AktualniProjekti/AktualniProjektiItems";
 import { Devana2, Dvojcek, Kvartet_siska, Naslovna, Tem_catez } from "../images";
 
 function Akt_projekti() {
   return (
     <>
-      <NavBar />
       <Hero
         cName="hero-mid"
         heroImg={Naslovna}
@@ -20,7 +17,7 @@ function Akt_projekti() {
 
       <motion.div
         variants={cardAnimation}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="group-wrapper"
       >
@@ -58,7 +55,6 @@ function Akt_projekti() {
         />
       </motion.div>
 
-      <Footer />
     </>
   );
 }

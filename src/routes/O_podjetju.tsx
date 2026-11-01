@@ -2,15 +2,12 @@ import "../components/O_podjetju/O-podjetju.css";
 import { motion } from "framer-motion";
 import { textAnimation } from "../components/Animations";
 
-import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
-import Footer from "../components/Footer/Footer";
 import { Mansarda } from "../images";
 
 function O_podjetju() {
   return (
     <>
-      <NavBar />
       <Hero
         cName="hero-mid"
         heroImg={Mansarda}
@@ -19,12 +16,12 @@ function O_podjetju() {
       />
       <motion.div
         variants={textAnimation}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="about-container"
       >
         <div className="about-subcontainer">
-          <h1>O NAS</h1>
+          <h2>O NAS</h2>
           <p>
             Podjetje ustanovljeno v letu 2013 z glavno dejavnostjo vgradnja
             suhomontažnih sistemov. V letu 2019 smo začeli širiti storitve v
@@ -34,29 +31,29 @@ function O_podjetju() {
             izvedbe.
           </p>
 
-          <h1>VIZIJA</h1>
+          <h2>VIZIJA</h2>
           <p>Povečanje izgradnje novih nepremičninskih projektov. </p>
 
-          <h1>CILJI</h1>
+          <h2>CILJI</h2>
           <p>
             S prilagodljivostjo storitve in cene omogočiti naročnikom lažjo in
             hitrejšo odločitev pri izbiri storitve.
           </p>
 
-          <h1>PODATKI O PODJETJU</h1>
+          <h2>PODATKI O PODJETJU</h2>
           <div className="podatki-container">
             <div className="podatki-wrapper">
-              <h2>Ime podjetja</h2>
+              <h3>Ime podjetja</h3>
               <p>UMS STORITVE d.o.o.</p>
             </div>
 
             <div className="podatki-wrapper">
-              <h2>Sedež podjetja</h2>
+              <h3>Sedež podjetja</h3>
               <p>Brodarjev trg 14, 1000 Ljubljana</p>
             </div>
 
             <div className="podatki-wrapper">
-              <h2>Telefon</h2>
+              <h3>Telefon</h3>
               <p>
                 Sašo Ropič, direktor 040 619 246
                 <br />
@@ -67,22 +64,22 @@ function O_podjetju() {
             </div>
 
             <div className="podatki-wrapper">
-              <h2>Email</h2>
+              <h3>Email</h3>
               <a href="mailto:info@ums.si">info@ums.si</a>
             </div>
 
             <div className="podatki-wrapper">
-              <h2>Matična številka</h2>
+              <h3>Matična številka</h3>
               <p>6409377000</p>
             </div>
 
             <div className="podatki-wrapper">
-              <h2>Identifikacijska št. za DDV:</h2>
+              <h3>Identifikacijska št. za DDV:</h3>
               <p>SI20019238</p>
             </div>
 
             <div className="podatki-wrapper">
-              <h2>Številka računa in banka</h2>
+              <h3>Številka računa in banka</h3>
               <p>
                 NKBM d.d. - S156 0430 2000 3471905
                 <br />
@@ -92,7 +89,6 @@ function O_podjetju() {
           </div>
         </div>
       </motion.div>
-      <Footer />
     </>
   );
 }

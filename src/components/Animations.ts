@@ -76,22 +76,14 @@ export const cardAnimation: Variants = {
   
 export const cardX: Variants = {
   hidden: { 
-    opacity: 0,
-    scale: 0,
-    x: "50%" },
+    opacity: 0 },
   show: { 
-    opacity: 1,
-    scale: 1,
-    x: 0 },
+    opacity: 1 },
   }
 
 export const cardY: Variants = {
   hidden: { 
-    opacity: 0,
-    scale: 0,
-    y: "50%" },
+    opacity: 0 },
   show: { 
-    opacity: 1,
-    scale: 1,
-    y: 0 },
+    opacity: 1 },
   }

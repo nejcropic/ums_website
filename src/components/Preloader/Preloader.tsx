@@ -6,7 +6,7 @@ import "./Preloader.css";
 const PreLoader = () => {
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!container.current) return;
+    if (!container.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const animation = preLoaderAnim(container.current);
     return () => animation.revert();
   }, []);

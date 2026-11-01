@@ -2,16 +2,13 @@ import { motion } from "framer-motion";
 import "../components/Reference/Reference.css";
 import { cardAnimation, cardX } from "../components/Animations";
 
-import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
-import Footer from "../components/Footer/Footer";
 import { ReferenceItems } from "../components/Reference/ReferenceItems";
 import { Intercontinental } from "../images";
 
 function Reference() {
   return (
     <>
-      <NavBar />
       <Hero
         cName="hero-mid"
         heroImg={Intercontinental}
@@ -22,7 +19,7 @@ function Reference() {
       <div className="reference-wrapper">
         <motion.div
           variants={cardAnimation}
-          initial="hidden"
+          initial={false}
           animate="show"
           className="reference-card"
         >
@@ -30,12 +27,11 @@ function Reference() {
             return (
               <motion.div
                 variants={cardX}
-                animate={{ rotate: 360 }}
                 className="r-card"
                 key={index}
               >
                 <div className="r-image">
-                  <img loading="lazy" decoding="async" src={item.image} alt="" />
+                  <img loading="lazy" decoding="async" src={item.image} alt={item.title} />
                 </div>
                 <h5>Leto izgradnje: {item.besedilo}</h5>
                 <h4>{item.title}</h4>
@@ -44,7 +40,6 @@ function Reference() {
           })}
         </motion.div>
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,32 +1,12 @@
 import "./Hero.css";
-import { motion } from "framer-motion";
-import { backgroundAnimation, mainAnimation } from "../Animations";
 
 interface HeroProps { cName: string; heroImg: string; title: string; text: string; }
 
-function Hero(props: HeroProps) {
+export default function Hero({ cName, heroImg, title, text }: HeroProps) {
   return (
-    <>
-      <motion.div
-        variants={backgroundAnimation}
-        initial="hidden"
-        animate="show"
-        className={props.cName}
-      >
-        <img alt="HeroImg" src={props.heroImg} />
-      </motion.div>
-
-      <motion.div
-        variants={mainAnimation}
-        initial="hidden"
-        animate="show"
-        className="hero-text"
-      >
-        <h1>{props.title}</h1>
-        <p>{props.text}</p>
-      </motion.div>
-    </>
+    <section className={`page-hero ${cName}`} aria-label={title}>
+      <img className="page-hero__image" src={heroImg} alt="" fetchPriority="high" />
+      <div className="hero-text"><h1>{title}</h1>{text && <p>{text}</p>}</div>
+    </section>
   );
 }
-
-export default Hero;

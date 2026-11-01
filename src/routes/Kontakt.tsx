@@ -2,15 +2,12 @@ import "../components/Kontakt/Kontakt.css";
 import { motion } from "framer-motion";
 import { textAnimation } from "../components/Animations";
 
-import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
-import Footer from "../components/Footer/Footer";
 import { Mansarda } from "../images";
 
 function Kontakt() {
   return (
     <>
-      <NavBar />
       <Hero
         cName="hero-mid"
         heroImg={Mansarda}
@@ -19,13 +16,13 @@ function Kontakt() {
       />
       <motion.div
         variants={textAnimation}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="kontakt-container"
       >
         <div className="kontakt-subcontainer">
           <div className="kontakt-wrapper">
-            <h1>Sašo Ropič</h1>
+            <h2>Sašo Ropič</h2>
             <h4>uni.dipl.ing.str.</h4>
             <p>Direktor</p>
             <div className="line"></div>
@@ -41,7 +38,7 @@ function Kontakt() {
           </div>
 
           <div className="kontakt-wrapper">
-            <h1>Milan Milovič</h1>
+            <h2>Milan Milovič</h2>
             <br />
             <p>Vodja projektov</p>
             <div className="line"></div>
@@ -56,7 +53,7 @@ function Kontakt() {
             </ul>
           </div>
           <div className="kontakt-wrapper">
-            <h1>Uroš Rutnik</h1>
+            <h2>Uroš Rutnik</h2>
             <br />
             <p>Vodja projektov</p>
             <div className="line"></div>
@@ -72,7 +69,6 @@ function Kontakt() {
           </div>
         </div>
       </motion.div>
-      <Footer />
     </>
   );
 }

@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import "../components/Storitve/Storitve.css";
 import { mainAnimation, cardAnimation } from "../components/Animations";
 
-import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
-import Footer from "../components/Footer/Footer";
 import StoritveItems from "../components/Storitve/StoritveItems";
 
 import {
@@ -21,50 +19,46 @@ const Storitve = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const elementId = location.hash.substring(1); // Remove the leading '#' from the URL hash
-    scrollToElement(elementId, true);
-  }, [location]);
+    if (!location.hash) return;
+    // Wait for the layout to commit after a lazy route import.
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [location.hash]);
 
-  const scrollToElement = (elementId: string, flag: boolean) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      if (flag) {
-        element.scrollIntoView({ block: "end" });
-      } else {
-        element.scrollIntoView({ block: "center" });
-      }
-    }
+  const scrollToElement = (elementId: string) => {
+    document.getElementById(elementId)?.scrollIntoView({ block: "start" });
   };
 
   return (
     <>
-      <NavBar />
       <Hero cName="hero-mid" heroImg={Storitve_img} title="Storitve" text="" />
       <motion.div
         variants={mainAnimation}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="buttons-container"
       >
         <nav>
           <ul>
             <li>
-              <button onClick={() => scrollToElement("gr_projekti", false)}>
+              <button onClick={() => scrollToElement("gr_projekti")}>
                 Gradbeni projekti
               </button>
             </li>
             <li>
-              <button onClick={() => scrollToElement("adaptacije", false)}>
+              <button onClick={() => scrollToElement("adaptacije")}>
                 Adaptacije
               </button>
             </li>
             <li>
-              <button onClick={() => scrollToElement("suhomontaza", false)}>
+              <button onClick={() => scrollToElement("suhomontaza")}>
                 Suhomontažna dela
               </button>
             </li>
             <li>
-              <button onClick={() => scrollToElement("zun_ureditev", false)}>
+              <button onClick={() => scrollToElement("zun_ureditev")}>
                 Zunanja ureditev
               </button>
             </li>
@@ -73,7 +67,7 @@ const Storitve = () => {
       </motion.div>
       <motion.div
         variants={cardAnimation}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="group-wrapper"
       >
@@ -136,7 +130,6 @@ const Storitve = () => {
           img={Okolica}
         />
       </motion.div>
-      <Footer />
     </>
   );
 };

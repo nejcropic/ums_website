@@ -1,72 +1,11 @@
-.about-container{
-    margin: 4rem 6rem;
-    text-align: start;
-    justify-content: center;
-    align-items: center;
-    color: var(--mainColor);
-}
-.about-subcontainer {
-    direction: flex;
-    flex-direction: row;
-    max-width: 720px;
-}
-.about-subcontainer h1{
-    padding-bottom: 0.2rem;
-}
-.about-subcontainer h1:after{
-    content:' ';
-    margin-right: 10px; 
-    display:block;
-    height: 1px;
-    width: 100px;
-    border:1px solid var(--mainColor);
-    background-color: var(--mainColor);
-    margin-bottom: 20px;
-}
-
-.about-subcontainer p{
-    padding-bottom: 2rem;
-}
-
-.podatki-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-.podatki-wrapper {
-    float: left;
-    width: 50%;
-    box-sizing: border-box;
-    margin: 0;
-}
-
-.podatki-wrapper p{
-    padding-bottom: 1rem;
-}
-.podatki-wrapper a{
-    color: var(--mainColor);
-    padding-bottom: 1rem;
-    text-decoration: none;
-}
-.podatki-wrapper a{
-    color: var(--mainColor);
-}
-.podatki-wrapper a:hover{
-    color: white;
-    padding: 0.1rem;
-    background-color: var(--mainColor);
-    border-radius: 4px;
-}
-@media screen and (max-width: 850px) {
-    .about-container{
-        margin: 4rem 2rem;
-    }
-    .podatki-container {
-        flex-direction: column;
-    }
-    .podatki-wrapper {
-        float: left;
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0 0 0.5rem 0;
-    }
-}
+.about-container { max-width: 1100px; margin-inline: auto; padding: 64px var(--page-gutter); color: #20354a; text-align: left; overflow-wrap: anywhere; }
+.about-subcontainer > h2 { font-size: 1.75rem; line-height: 1.2; padding-bottom: 16px; margin-top: 32px; }
+.about-subcontainer > h2:first-child { margin-top: 0; }
+.about-subcontainer > h2::after { content: ""; display: block; height: 2px; width: 100px; margin-top: 16px; background: #6b809b; }
+.about-subcontainer > p { font-size: 1.0625rem; line-height: 1.7; }
+.podatki-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
+.podatki-wrapper h3 { font-size: 1.1875rem; line-height: 1.3; margin-bottom: 8px; }
+.podatki-wrapper p { line-height: 1.7; }
+.podatki-wrapper a { display: inline-flex; min-height: 44px; align-items: center; color: #425d78; }
+.podatki-wrapper a:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 700px) { .about-container { padding-block: 44px; } .podatki-container { grid-template-columns: 1fr; } }

@@ -1,1 +1,0 @@
-var e=`/assets/mansarda-Bb-3Yxn7.webp`;export{e as t};

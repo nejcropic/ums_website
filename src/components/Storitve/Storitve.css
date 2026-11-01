@@ -1,193 +1,23 @@
-.group-wrapper{
-    margin: 4rem 6rem;
+.group-wrapper { max-width: 1440px; margin: 0 auto; padding: 24px var(--page-gutter) 64px; }
+.buttons-container { padding: 24px var(--page-gutter) 0; }
+.buttons-container nav { max-width: 1280px; margin-inline: auto; }
+.buttons-container ul { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.buttons-container button { width: 100%; min-height: 50px; padding: 12px 16px; border: 1px solid #536e8b; color: #fff; background: #1a3047; font-size: .9375rem; font-weight: 600; }
+.buttons-container button:hover { background: #536e8b; }
+.first-storitev, .first-storitev-reverse { display: flex; justify-content: space-between; align-items: center; gap: 36px; margin-top: 40px; padding: 28px; border: 1px solid #d8e0e6; color: #20354a; scroll-margin-top: 24px; }
+.first-storitev-reverse { flex-direction: row-reverse; }
+.storitev-text, .projekti-text { width: 50%; min-width: 0; text-align: left; font-size: 1.0625rem; line-height: 1.6; }
+.storitev-text h2, .projekti-text h2 { font-size: clamp(1.625rem, 2.5vw, 2.125rem); line-height: 1.2; margin-bottom: 20px; }
+.storitev-text pre { white-space: pre-line; overflow-wrap: anywhere; font: inherit; line-height: 1.65; }
+.storitev-image, .first-storitev > .image, .first-storitev-reverse > .image { width: 50%; min-width: 0; }
+.storitev-image img, .first-storitev > .image img, .first-storitev-reverse > .image img { display: block; width: 100%; height: 350px; object-fit: cover; }
+@media (max-width: 1000px) {
+  .first-storitev, .first-storitev-reverse { flex-direction: column-reverse; align-items: stretch; padding: 24px; gap: 26px; }
+  .storitev-text, .projekti-text, .storitev-image, .first-storitev > .image, .first-storitev-reverse > .image { width: 100%; }
+  .buttons-container ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.buttons-container {
-    position: absolute;
-    top: 30.6vh;
-    width: 100%;
-}
-.buttons-container nav{
-    width: 70vw;
-    background-color: var(--transparentBlackColor);
-    padding: 0rem;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-
-
-.buttons-container nav ul{
-    display: flex;
-    flex-direction: row;
-	margin-bottom: 0;
-	list-style: none;
-	padding-left: 0;
-}
-
-.buttons-container nav ul li {
-    width: 100%;
-    padding-left: 0;
-}
-
-.buttons-container nav ul li:first-child {
-        border-left: 0;
-    }
-
-    .buttons-container nav ul li button {
-        width: 100%;
-        display: block;
-        min-width: 10rem;
-        height: 2.75rem;
-        line-height: 2.75rem;
-        text-transform: uppercase;
-        list-style: none;
-        letter-spacing: 0.2rem;
-        font-size: 0.8rem;
-        border-bottom: 0;
-        list-style: none;
-        background-color: var(--transparentBlackColor);
-        color: #fff;
-        border: solid 1px #ffffff;
-        border-radius: 4px;
-    }
-
-    .buttons-container nav ul li:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-        }
-
-        .buttons-container nav ul li button:hover {
-            color: #fff;
-            cursor: pointer;
-            
-        }
-
-        .buttons-container nav ul li button:active {
-            background-color: rgba(255, 255, 255, 0.175);
-        }
-
-
-
-
-
-.first-storitev{
-    display: flex;
-    white-space: normal;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 4.5rem;    
-    border-radius: 6px;
-    padding: 1.5rem;
-    box-shadow: -1px 1px 62px -18px rgb(0,0,0,0.8);
-    color: var(--mainColor);
-}
-.first-storitev-reverse{
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 4.5rem;    
-    border-radius: 6px;
-    padding: 1.5rem;
-    box-shadow: -1px 1px 62px -18px rgb(0,0,0,0.8);
-    color: var(--mainColor);
-}
-.first-storitev:hover{
-    background-color: var(--mainColor);
-    color: var(--textColor);
-    transform: scale(1.06);
-    transition: 0.2s ease-in-out;
-    
-}
-.first-storitev-reverse:hover{
-    background-color: var(--mainColor);
-    color: var(--textColor);
-    transform: scale(1.06);
-    transition: 0.3s ease-in-out;
-    
-}
-
-.storitev-text {
-    box-sizing: border-box;
-    width: 45%;
-    text-align: start;
-    text-overflow: clip;
-    overflow-wrap: break-word;
-    font-size: 1.1rem;
-}
-.storitev-text pre {
-    width: 100%;
-    white-space: pre-line;
-    line-height: 1.25rem;
-}
-
-.storitev-text h2{
-    padding-bottom: 1rem;
-}
-
-.storitev-image {
-    width: 50%;
-}
-
-.storitev-image img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 6px;
-    box-shadow: -1px 1px 62px -18px rgb(0,0,0,0.8);
-}
-
-
-
-@media screen and (max-width:1100px) {
-    .group-wrapper{
-        margin: 4rem 1.2rem;
-    }
-    .first-storitev{
-        display: flex;
-        flex-direction: column-reverse;
-        margin-top: 2.5rem;    
-    }
-    .first-storitev-reverse{
-        display: flex;
-        flex-direction: column-reverse;
-        margin-top: 2.5rem;    
-    }
-    .storitev-text {
-        width: 100%;
-    }
-    .storitev-image {
-        width: 100%;
-        margin: 1.8rem;
-    }
-    .image img {
-        height: 250px;
-    }
-    .buttons-container {
-        top: 25.5vh;
-    }
-    .buttons-container nav{
-        padding: 0rem;
-    }
-    .buttons-container nav ul{
-        display: flex;
-        flex-direction: column;
-        border: none;
-    }
-
-    .buttons-container nav ul li::after{
-        content: '';
-		display: block;
-		position: relative;
-        top: 0;
-		left: calc(50% - 1px);
-		width: 1px;
-		height: 6px;
-		background: #ffffff;
-    }
-
-    .buttons-container nav ul li:last-child:after{
-        display: none;
-    }
-    
-
-
+@media (max-width: 480px) {
+  .first-storitev, .first-storitev-reverse { padding: 16px; margin-top: 24px; gap: 22px; }
+  .storitev-image img, .first-storitev > .image img, .first-storitev-reverse > .image img { height: 230px; }
+  .buttons-container ul { grid-template-columns: 1fr; }
 }

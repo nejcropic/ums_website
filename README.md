@@ -1,6 +1,6 @@
 # UMS spletna stran
 
-React + TypeScript + Vite. Obstoječa oblika in vsebina sta ohranjeni.
+React + TypeScript + Vite. Domača stran ohranja prepoznaven uvod z logotipom in fotografijami ter ga dopolnjuje s predstavitvijo podjetja, področij dela, referenc in kontakta.
 
 ## Lokalni razvoj
 
@@ -36,3 +36,12 @@ Mapa `build/` je bila že vključena v Git. Zaradi obstoječega načina objave n
 - Uvodna animacija z logotipom je skrajšana na manj kot sekundo.
 
 Za optimizacijo slik je uporabljen lokalni Media Studio (`C:\Users\nejcr\WORK\image_video_optimizer`, `engine.py`): fotografije WebP, kakovost 82, metoda 6, največ 1920 × 1080 brez povečave; logotipi brezizgubni WebP. Izvirniki ostanejo ohranjeni. Za ponovno optimizacijo uporabite izvirnike, ne že stisnjenih datotek.
+
+## Oblikovna prenova
+
+- Skupna navigacija in noga sta v `App.tsx`. Mobilni meni se zapre s tipko Escape, ob izbiri povezave ali kliku zunaj navigacije.
+- Vsebina domačih storitev in izbora referenc je v `src/components/Domov/homeContent.ts`.
+- Uvodni drsnik vsebuje obstoječe štiri fotografije. Ima ročno upravljanje in premor; samodejno menjavanje je izklopljeno pri zmanjšanem gibanju in v neaktivnem zavihku.
+- Telefon: en stolpec storitev in vsebinskih sklopov. Tablica: dva stolpca storitev, zložen prikaz referenc pri manjši širini. Namizje: široka navigacija, razdeljena predstavitev projektov.
+- `src/images/responsive/` vsebuje različice širine 640 in 960 slikovnih pik, pripravljene z Media Studio iz izvirnikov. Brskalnik s `srcSet` izbere primerno fotografijo. Metapodatki so v `src/responsiveImages.ts`.
+- Podstrani ohranjajo obstoječo vsebino. Popravljene so prilagodljive mreže, prikaz kontaktov, vidnost letnic referenc in sidra pod fiksno navigacijo.
