@@ -21,6 +21,16 @@ npm run build
 npm run preview
 ```
 
+### Statični predizris (SEO)
+
+`npm run build` najprej zgradi aplikacijo, nato brez zagona brskalnika predizriše vseh šest javnih poti. Vsaka dobi svojo vsebino HTML, naslov, opis, kanonično povezavo in potrebne sloge že pred zagonom JavaScripta. Ustvarita se tudi `build/sitemap.xml` in povezava do njega v `build/robots.txt`.
+
+Podstrani so zapisane kot `build/storitve/index.html` in tudi `build/storitve.html` (enako za druge poti), da delujejo različni načini streženja statičnih strani. Na gostovanje prenesite **celotno mapo build z vsemi podmapami**. Pravila gostovanja morajo najprej postreči obstoječo datoteko oziroma indeks podmape in šele nato uporabiti nadomestni `index.html` za SPA. Ne preusmerjajte vseh poti neposredno na domači HTML. Končno nastavitev preverite na dejanskem gostovanju.
+
+Za lokalni pregled uporabite `npm run preview`; razvojni `npm run dev` ostaja običajna aplikacija Vite. Preverjanje ustvarjenega HTML zaženete z `npm run test:prerender` po uspešni gradnji. Ob spremembah podatkov projektov ali fotografij ponovno izvedite celotno gradnjo.
+
+Predizris uporablja iste komponente in projektne podatke kot interaktivna stran; `src/seo.ts` je skupni vir metapodatkov. Ob dodajanju nove poti posodobite še `src/App.tsx`, metapodatke in seznam modulov v `scripts/prerender.mjs`. Začasni strežniški izhod `.prerender/` je prezrt v Gitu in ga ne objavljajte. Na gostovanju ni potreben Node.js; predizris se izvede ob gradnji.
+
 `build/` vsebuje produkcijsko stran. Na gostovanje prenesite vsebino te mape, ne razvojnih datotek. Strežnik mora neobstoječe poti usmeriti na `index.html`, da neposredno odpiranje in osvežitev poti `/storitve`, `/reference`, `/akt_projekti`, `/o_podjetju` in `/kontakt` delujeta z BrowserRouterjem. Objava je predvidena v korenu domene https://www.ums.si/.
 
 Mapa `build/` je generirana in izključena iz Gita. Pred objavo jo pripravite z `npm run build`, nato na gostovanje prenesite celotno vsebino te mape. Pri avtomatizirani objavi naj gostovanje izvede gradnjo in uporabi `build/` kot izhodno mapo.

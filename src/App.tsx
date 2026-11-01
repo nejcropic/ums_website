@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import "./index.css";
+import PageMetadata from "./components/PageMetadata";
 import PreLoader from "./components/Preloader/Preloader";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -13,11 +14,12 @@ const O_podjetju = lazy(() => import("./routes/O_podjetju"));
 const Reference = lazy(() => import("./routes/Reference"));
 const Kontakt = lazy(() => import("./routes/Kontakt"));
 
-export default function App() {
+export default function App({ prerendered = false }: { prerendered?: boolean }) {
   return (
     <MotionConfig reducedMotion="user">
+      <PageMetadata />
       <RouteScroll />
-      <PreLoader />
+      {!prerendered && <PreLoader />}
       <div className="App">
         <NavBar />
         <main id="main-content" tabIndex={-1}>

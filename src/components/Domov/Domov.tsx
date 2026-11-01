@@ -1,3 +1,4 @@
+import { useClientReducedMotion } from "../../hooks/useClientReducedMotion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../../images";
@@ -5,7 +6,7 @@ import BackgroundSlider from "../BackgroundSlider/BackgroundSlider";
 import { services } from "./homeContent";
 import { projects } from "../../projects/projects";
 import { Reveal } from "../Reveal/Reveal";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import "./Domov.css";
 
 const featuredProjects = projects.slice(0, 3);
@@ -13,7 +14,7 @@ const featuredProjects = projects.slice(0, 3);
 export default function Domov() {
   const [selectedProjectId, setSelectedProjectId] = useState(featuredProjects[0]?.id ?? "");
   const project = featuredProjects.find((item) => item.id === selectedProjectId) ?? featuredProjects[0];
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useClientReducedMotion();
 
   return (
     <>

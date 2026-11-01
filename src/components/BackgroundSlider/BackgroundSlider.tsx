@@ -1,5 +1,6 @@
+import { useClientReducedMotion } from "../../hooks/useClientReducedMotion";
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { sliderData } from "./BackgroundSliderData";
 import "./BackgroundSlider.css";
 
@@ -11,7 +12,7 @@ export default function BackgroundSlider() {
   const requestSequence = useRef(0);
   const [paused, setPaused] = useState(false);
   const [engaged, setEngaged] = useState(false);
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useClientReducedMotion();
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {

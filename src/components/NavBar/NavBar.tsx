@@ -7,7 +7,7 @@ import "./NavBar.css";
 export default function NavBar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(() => window.scrollY > 24);
+  const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
   const toggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
@@ -22,6 +22,7 @@ export default function NavBar() {
     };
     const desktop = window.matchMedia("(min-width: 1100px)");
     const onResize = () => { if (desktop.matches) setOpen(false); };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("keydown", onKey);
     document.addEventListener("pointerdown", onPointer);

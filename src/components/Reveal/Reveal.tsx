@@ -1,5 +1,7 @@
+import { useClientReducedMotion } from "../../hooks/useClientReducedMotion";
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
 type RevealTag = "div" | "section";
@@ -50,7 +52,7 @@ const immediateItemVariants = {
 };
 
 function useImmediateReveal() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useClientReducedMotion();
   const { hash } = useLocation();
   return reducedMotion !== false || Boolean(hash);
 }
@@ -64,6 +66,21 @@ export function Reveal({
   labelledBy,
 }: RevealProps) {
   const immediate = useImmediateReveal();
+  const container = useRef<HTMLElement | null>(null);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    if (immediate || !container.current || !("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
+    // Server HTML stays visible. Only off-screen content is hidden after hydration.
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(entry.isIntersecting);
+      if (entry.isIntersecting) observer.disconnect();
+    }, { threshold: 0.12 });
+    observer.observe(container.current);
+    return () => observer.disconnect();
+  }, [immediate]);
   const variants = immediate ? immediateVariants : sectionVariants;
   const motionProps = {
     className,
@@ -71,10 +88,9 @@ export function Reveal({
     "aria-label": label,
     "aria-labelledby": labelledBy,
     variants,
-    initial: immediate ? false : "hidden",
-    animate: immediate ? "visible" : undefined,
-    whileInView: immediate ? undefined : "visible",
-    viewport: { once: true, amount: 0.12 },
+    ref: (element: HTMLElement | null) => { container.current = element; },
+    initial: false as const,
+    animate: immediate || visible ? "visible" : "hidden",
   };
 
   return as === "section" ? (
