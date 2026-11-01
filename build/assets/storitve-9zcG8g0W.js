@@ -1,1 +1,0 @@
-var e=`/assets/storitve-9cJasafA.webp`;export{e as t};
