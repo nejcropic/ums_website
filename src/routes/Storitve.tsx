@@ -1,137 +1,59 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-import "../components/Storitve/Storitve.css";
-import { mainAnimation, cardAnimation } from "../components/Animations";
+import { Link, useLocation } from "react-router-dom";
+import { Storitve_img } from "../images";
+import { serviceContent } from "../components/Storitve/serviceContent";
+import "../components/Storitve/ServicePage.css";
 
-import Hero from "../components/Hero/Hero";
-import StoritveItems from "../components/Storitve/StoritveItems";
-
-import {
-  Storitve_img,
-  Gradbeni_projekti,
-  Adaptacije,
-  Suhomontažna_dela,
-  Okolica,
-} from "../images";
-
-const Storitve = () => {
-  const location = useLocation();
-
+export default function Storitve() {
+  const { hash } = useLocation();
   useEffect(() => {
-    if (!location.hash) return;
-    // Wait for the layout to commit after a lazy route import.
+    if (!hash) return;
     const frame = requestAnimationFrame(() => {
-      document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start", behavior: "instant" });
+      document.getElementById(hash.slice(1))?.scrollIntoView({ block: "start", behavior: "instant" });
     });
     return () => cancelAnimationFrame(frame);
-  }, [location.hash]);
-
-  const scrollToElement = (elementId: string) => {
-    document.getElementById(elementId)?.scrollIntoView({ block: "start" });
-  };
+  }, [hash]);
 
   return (
-    <>
-      <Hero cName="hero-mid" heroImg={Storitve_img} title="Storitve" text="" />
-      <motion.div
-        variants={mainAnimation}
-        initial={false}
-        animate="show"
-        className="buttons-container"
-      >
-        <nav>
-          <ul>
-            <li>
-              <button onClick={() => scrollToElement("gr_projekti")}>
-                Gradbeni projekti
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToElement("adaptacije")}>
-                Adaptacije
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToElement("suhomontaza")}>
-                Suhomontažna dela
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToElement("zun_ureditev")}>
-                Zunanja ureditev
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </motion.div>
-      <motion.div
-        variants={cardAnimation}
-        initial={false}
-        animate="show"
-        className="group-wrapper"
-      >
-        <StoritveItems
-          className="first-storitev"
-          id="gr_projekti"
-          heading="Gradbeni projekti"
-          text={`Izvedba projektov od ideje do strehe. Visoke gradnje, ki jih izvajamo:
-          \n - stanovanjski objekti (hiša, večstanovanjske stavbe),
-          \n - skladišča in industrijski objekti,
-          \n - dostali objekti na željo naročnika. 
-          \n\nPri projektu sodelujemo v vseh fazah izvedbe:
-          \n - priprava ocene stroškov investicije,
-          \n - priprava in prodobitev projektih dokumentov(soglasja, gradbena in uporabna dovoljenja),
-          \n - organizacijo vseh izvedbenih aktivnosti,
-          \n - finančna kontrola projekta,
-          \n - tehnični nadzor izvedbe v skladu z Zakonom o graditvi objektov,
-          \n - ureditev primopredajnih zapisnikov z izvajalci in investitorjem.`}
-          img={Gradbeni_projekti}
-        />
-        <StoritveItems
-          className="first-storitev-reverse"
-          id="adaptacije"
-          heading="Adaptacije"
-          text={`Vsak si želi urediti prostor po svojem navdihu in željah. Da vas razbremenimo, vam ponujamo storitve od načrtovanja idejne zasnove pa do končne izvedbo.
-            \n - pripravo idejne zasnove in načrtovanja vključno s 3D predstavo,
-            \n - izvedbo demontaže nepotrebnega stavbnega pohištva in ostalih konstrukcijskih elementov,
-            \n - izvedbo vseh storitev (gradbena in obrtniška dela),
-            \n - izvedbo strokovnega nadzora izvedbe del,
-            \n - priprava in ureditev vseh potrebne tehnične in primopredajne dokumentacije.
-            `}
-          img={Adaptacije}
-        />
-        <StoritveItems
-          className="first-storitev"
-          id="suhomontaza"
-          heading="Suhomontažna dela"
-          text={`Vsak si želi urediti prostor po svojem navdihu in željah. Da vas razbremenimo, vam ponujamo storitve od načrtovanja idejne zasnove pa do končne izvedbo.           
-            Pri adaptaciji sodelujemo v fazah:
-            \n - pripravo idejne zasnove in načrtovanja vključno s 3D predstavo,
-            \n - izvedbo demontaže nepotrebnega stavbnega pohištva in ostalih konstrukcijskih elementov,
-            \n - izvedbo vseh storitev (gradbena in obrtniška dela),
-            \n - izvedbo strokovnega nadzora izvedbe del,
-            \n - priprava in ureditev vseh potrebne tehnične in primopredajne dokumentacije.
-            `}
-          img={Suhomontažna_dela}
-        />
-        <StoritveItems
-          className="first-storitev"
-          id="zun_ureditev"
-          heading="Zunanja ureditev"
-          text={`Okolica je prvi stik z objektom. Primerno oblikovno in funkcionalno dvorišče hiše ali poslovne stavbe pripomore do končnega izgleda celotnega objekta. 
-            Pri zunanji ureditvi izvedemo storitve:
-            \n - načrtovanja okolice,
-            \n - izkopi,
-            \n - razpeljava meteornih in fekalnih cevi,
-            \n - tlakovanje(asfalt, tlakovci),
-            \n - ureditev zemlje in travne ruše.
-            `}
-          img={Okolica}
-        />
-      </motion.div>
-    </>
-  );
-};
+    <div className="services-page">
+      <header className="services-hero">
+        <div className="services-hero__body">
+          <nav className="services-breadcrumb" aria-label="Drobtinice"><Link to="/">Domov</Link><span aria-hidden="true">/</span><span aria-current="page">Storitve</span></nav>
+          <p className="services-eyebrow">Gradnja in inženiring</p>
+          <h1>Storitve za<br />vaš projekt.</h1>
+          <p className="services-hero__intro">Posamezna dela ali celovita izvedba. Od načrtovanja do zadnjih podrobnosti.</p>
+          <a className="services-hero__link" href="#podrocja">Raziščite področja dela <span aria-hidden="true">↓</span></a>
+        </div>
+        <img className="services-hero__image" src={Storitve_img} alt="Gradbena dela na objektu" fetchPriority="high" />
+      </header>
 
-export default Storitve;
+      <nav id="podrocja" className="services-index" aria-label="Izberite področje dela">
+        <div>{serviceContent.map((service, index) => <Link key={service.id} to={`#${service.id}`} onClick={() => document.getElementById(service.id)?.scrollIntoView({ block: "start" })} className={hash === `#${service.id}` ? "services-index__link services-index__link--active" : "services-index__link"} aria-current={hash === `#${service.id}` ? "location" : undefined}><span className="services-index__number">0{index + 1}</span><span>{service.title}</span><span className="services-index__arrow" aria-hidden="true">↓</span></Link>)}</div>
+      </nav>
+
+      <div className="services-details">
+        {serviceContent.map((service, index) => (
+          <section id={service.id} key={service.id} className="service-detail" aria-labelledby={`${service.id}-title`}>
+            <div className="service-detail__visual">
+              <img {...service.image} sizes="(max-width: 800px) 100vw, 45vw" loading="lazy" decoding="async" alt={service.alt} />
+              <div className="service-detail__caption"><span>UMS / Področja dela</span><span>0{index + 1}</span></div>
+            </div>
+            <div className="service-detail__body">
+              <p className="services-eyebrow">Področje 0{index + 1}</p>
+              <h2 id={`${service.id}-title`}>{service.title}</h2>
+              <p className="service-detail__lead">{service.lead}</p>
+              <p className="service-detail__description">{service.description}</p>
+              {service.groups.map(group => <div key={group.title} className="service-detail__group"><h3>{group.title}</h3><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul></div>)}
+              <Link className="service-detail__contact" to="/kontakt">Pogovorimo se o projektu <span aria-hidden="true">↗</span></Link>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <section className="services-next" aria-labelledby="services-next-title">
+        <div><p className="services-eyebrow">Od načrtov k izvedbi</p><h2 id="services-next-title">Kaj načrtujete vi?</h2><p>Povejte nam, kaj želite zgraditi ali prenoviti.<br />Skupaj opredelimo naslednje korake.</p></div>
+        <div className="services-next__links"><Link to="/kontakt">Stopite v stik <span aria-hidden="true">↗</span></Link><Link to="/reference">Oglejte si naše reference <span aria-hidden="true">→</span></Link></div>
+      </section>
+    </div>
+  );
+}

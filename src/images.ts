@@ -4,7 +4,7 @@ import Devana from "./images/devana.webp";
 import Devana2 from "./images/devana2.webp";
 import Dvojcek from "./images/dvojcek.webp";
 import Dvojcek1 from "./images/dvojcek.webp";
-import Dvojcek_zunaj from "./images/zunanja_ureditev1.webp";
+import Dvojcek_zunaj from "./images/zunanja_ureditev.webp";
 import Gradbeni_projekti from "./images/gr_projekti.webp";
 import Intercontinental from "./images/intercontinental.webp";
 import Kvartet_siska from "./images/kvartet_siska.webp";
@@ -41,4 +41,3 @@ export {
   Tem_catez,
   Yaskawa,
 };
-
