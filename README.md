@@ -45,3 +45,18 @@ Za optimizacijo slik je uporabljen lokalni Media Studio (`C:\Users\nejcr\WORK\im
 - Telefon: en stolpec storitev in vsebinskih sklopov. Tablica: dva stolpca storitev, zložen prikaz referenc pri manjši širini. Namizje: široka navigacija, razdeljena predstavitev projektov.
 - `src/images/responsive/` vsebuje različice širine 640 in 960 slikovnih pik, pripravljene z Media Studio iz izvirnikov. Brskalnik s `srcSet` izbere primerno fotografijo. Metapodatki so v `src/responsiveImages.ts`.
 - Podstrani ohranjajo obstoječo vsebino. Popravljene so prilagodljive mreže, prikaz kontaktov, vidnost letnic referenc in sidra pod fiksno navigacijo.
+
+## Upravljanje projektov
+
+Fotografije projektov so v `src/images/projects/`. Ime fotografije brez končnice določa prikaz:
+
+- `Ime-projekta_2023.webp` doda projekt samo med reference.
+- `Lokacija_Opis-projekta_Ime-projekta_2023.webp` doda projekt med aktualne projekte in reference.
+
+Uporabite natanko dve ali štiri neprazna polja, ločena s podčrtaji. Zadnje polje mora biti letnica s štirimi številkami. Vezaji v poljih se prikažejo kot presledki; dejanski vezaji v besedilu zato niso podprti. Šumniki in ločila se ohranijo. Letnica pomeni leto projekta. Aktualnost določa štiridelno ime.
+
+Na primer `Ihan-pri-Domžalah_Enotna-hiša-dvojček._Dvojček_2023.webp` prikaže lokacijo, opis, ime in leto ter projekt uvrsti med aktualne.
+
+Odzivne različice so v `src/images/projects/responsive/` in sledijo imenu osnovne datoteke z dodano dejansko širino pred končnico, na primer `Ime-projekta_2023-640.webp`. Večje različice ustvarite iz izvirnika z lokalnim optimizatorjem. Če odzivnih različic ni, se uporabi osnovna fotografija. Različice za `/storitve` in druge neprojektne vsebine ostanejo v `src/images/` oziroma `src/images/responsive/`.
+
+Za premik aktualnega projekta med same reference preimenujte osnovno fotografijo iz štiridelne v dvodelno ime (ime in letnica) ter enako uskladite imena odzivnih različic v `projects/responsive/`.

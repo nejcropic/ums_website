@@ -1,1 +1,0 @@
-var e=`/assets/tem_catez-BqDtR9RV.webp`;export{e as t};

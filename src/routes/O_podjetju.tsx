@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Mansarda } from "../images";
 import { responsiveImages } from "../responsiveImages";
 import "../components/O_podjetju/O-podjetju.css";
 

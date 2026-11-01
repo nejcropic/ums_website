@@ -1,0 +1,18 @@
+{
+  "source": "C:\\Users\\nejcr\\WORK\\spletne_strani\\ums_website\\src\\images\\test\\adaptacije.webp",
+  "variants": [
+    {
+      "file": "adaptacije-640.webp",
+      "width": 640,
+      "height": 346,
+      "bytes": 18390
+    },
+    {
+      "file": "adaptacije-800.webp",
+      "width": 800,
+      "height": 432,
+      "bytes": 26194
+    }
+  ],
+  "srcSet": "adaptacije-640.webp 640w, adaptacije-800.webp 800w"
+}

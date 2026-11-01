@@ -6,7 +6,7 @@
 - Pred posegom preberi `git status --short`, preveri trenutno vejo in lokalna navodila. Ohrani uporabnikove spremembe; ne preklapljaj vej ali ponastavljaj kode brez zahteve.
 - Uporabnik pričakuje izvedbo in preverjanje sprememb v lokalnem projektu. Ne objavljaj na Sites, ne spreminjaj gostovanja, ne potiskaj v Git in ne ustvarjaj commita brez izrecne zahteve.
 - Ne dodajaj odvisnosti, če je nalogo mogoče dobro izvesti z obstoječimi orodji.
-
+    
 ## Potrjena oblikovna smer
 
 - Domača stran in prenovljena stran `/storitve` sta lokalna oblikovna referenca. Pred delom preberi njune komponente in CSS.

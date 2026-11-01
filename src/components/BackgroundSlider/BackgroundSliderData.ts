@@ -1,16 +1,9 @@
-import { responsiveImages } from "../../responsiveImages";
+import { projects } from "../../projects/projects";
 
 export const sliderData = [
-  { image: responsiveImages.planica, title: "Planica", body: "2015" },
-  {
-    image: responsiveImages.intercontinental,
-    title: "Intercontinental",
-    body: "2017",
-  },
-  {
-    image: responsiveImages.kvartet_siska,
-    title: "Kvartet Šiška",
-    body: "2023",
-  },
-  { image: responsiveImages.vilharia, title: "Vilharia", body: "2025" },
+  ...projects.slice(0, projects.length).map((project) => ({
+    image: { src: project.photo, srcSet: project.srcSet },
+    title: project.title,
+    body: project.year,
+  })),
 ];

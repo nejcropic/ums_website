@@ -1,17 +1,25 @@
 import { responsiveImages } from "../../responsiveImages";
+import { projects } from "../../projects/projects";
+import { Gradbeni_projekti } from "../../images";
+
+const featuredConstruction =
+  projects.find((project) => project.title === "Dvojček") ?? projects[0];
+const constructionImage = featuredConstruction
+  ? { src: featuredConstruction.photo, srcSet: featuredConstruction.srcSet }
+  : { src: Gradbeni_projekti };
 
 export const services = [
   {
     id: "gr_projekti",
     title: "Gradbeni projekti",
     description: "Od priprave projekta do zaključka gradnje.",
-    image: responsiveImages.dvojcek,
+    image: constructionImage,
   },
   {
     id: "adaptacije",
     title: "Adaptacije",
     description: "Nov namen in nova kakovost obstoječih prostorov.",
-    image: responsiveImages.mansarda,
+    image: responsiveImages.adaptacije,
   },
   {
     id: "suhomontaza",
@@ -25,36 +33,5 @@ export const services = [
     title: "Zunanja ureditev",
     description: "Urejene površine, ki povežejo objekt z okolico.",
     image: responsiveImages.zunanja_ureditev,
-  },
-];
-
-export const featuredProjects = [
-  {
-    id: "dvojcek",
-    title: "Hiša dvojček",
-    category: "Stanovanjski objekti",
-    description: "Izvedba enotne hiše dvojček v Ihanu pri Domžalah.",
-    location: "Ihan pri Domžalah",
-    year: "2023",
-    image: responsiveImages.dvojcek,
-  },
-  {
-    id: "kvartet",
-    title: "Kvartet Šiška",
-    category: "Stanovanjski objekti",
-    description:
-      "Sodelovanje pri izvedbi dveh stanovanjskih stolpnic v ljubljanski Šiški.",
-    location: "Ljubljana – Šiška",
-    year: "2023",
-    image: responsiveImages.kvartet_siska,
-  },
-  {
-    id: "intercontinental",
-    title: "Intercontinental",
-    category: "Poslovni objekti",
-    description: "Referenčni projekt hotela Intercontinental v Ljubljani.",
-    location: "Ljubljana",
-    year: "2017",
-    image: responsiveImages.intercontinental,
   },
 ];
