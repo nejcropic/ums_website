@@ -1,5 +1,6 @@
 import "../components/Reference/Reference.css";
 import { projects } from "../projects/projects";
+import { Reveal, RevealItem } from "../components/Reveal/Reveal";
 
 function Reference() {
   const featured = projects[Math.floor(projects.length / 2)];
@@ -22,9 +23,9 @@ function Reference() {
         )}
       </header>
       <section className="reference-wrapper" aria-label="Reference UMS">
-        <div className="reference-card">
-          {projects.map((project) => (
-            <article className="r-card" key={project.id}>
+        <Reveal className="reference-card">
+          {projects.map((project, index) => (
+            <RevealItem className="r-card" key={project.id} order={index}>
               <div className="r-image">
                 <img
                   src={project.photo}
@@ -41,9 +42,9 @@ function Reference() {
                   Leto projekta: <strong>{project.year}</strong>
                 </p>
               </div>
-            </article>
+            </RevealItem>
           ))}
-        </div>
+        </Reveal>
       </section>
     </div>
   );

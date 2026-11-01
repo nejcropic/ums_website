@@ -167,6 +167,15 @@
   outline: 2px solid var(--secondaryColor);
   outline-offset: 3px;
 }
+.about-next a span,
+.about-details dd a,
+.about-next a {
+  transition: color .18s ease-out, background-color .18s ease-out;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .about-next a:hover span { transform: translateX(3px); }
+}
+.about-next a span { display: inline-block; transition: transform .18s ease-out; }
 @media (max-width: 800px) {
   .about-hero {
     grid-template-columns: 1fr;

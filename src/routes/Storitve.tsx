@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Storitve_img } from "../images";
 import { serviceContent } from "../components/Storitve/serviceContent";
+import { Reveal } from "../components/Reveal/Reveal";
 import "../components/Storitve/ServicePage.css";
 
 export default function Storitve() {
@@ -33,9 +34,9 @@ export default function Storitve() {
 
       <div className="services-details">
         {serviceContent.map((service, index) => (
-          <section id={service.id} key={service.id} className="service-detail" aria-labelledby={`${service.id}-title`}>
+          <Reveal as="section" id={service.id} key={service.id} className="service-detail" labelledBy={`${service.id}-title`}>
             <div className="service-detail__visual">
-              <img {...service.image} sizes="(max-width: 800px) 100vw, 45vw" loading="lazy" decoding="async" alt={service.alt} />
+              <div className="service-detail__photo"><img {...service.image} sizes="(max-width: 800px) 100vw, 45vw" loading="lazy" decoding="async" alt={service.alt} /></div>
               <div className="service-detail__caption"><span>UMS / Področja dela</span><span>0{index + 1}</span></div>
             </div>
             <div className="service-detail__body">
@@ -46,14 +47,14 @@ export default function Storitve() {
               {service.groups.map(group => <div key={group.title} className="service-detail__group"><h3>{group.title}</h3><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul></div>)}
               <Link className="service-detail__contact" to="/kontakt">Pogovorimo se o projektu <span aria-hidden="true">↗</span></Link>
             </div>
-          </section>
+          </Reveal>
         ))}
       </div>
 
-      <section className="services-next" aria-labelledby="services-next-title">
+      <Reveal as="section" className="services-next" labelledBy="services-next-title">
         <div><p className="services-eyebrow">Od načrtov k izvedbi</p><h2 id="services-next-title">Kaj načrtujete vi?</h2><p>Povejte nam, kaj želite zgraditi ali prenoviti.<br />Skupaj opredelimo naslednje korake.</p></div>
         <div className="services-next__links"><Link to="/kontakt">Stopite v stik <span aria-hidden="true">↗</span></Link><Link to="/reference">Oglejte si naše reference <span aria-hidden="true">→</span></Link></div>
-      </section>
+      </Reveal>
     </div>
   );
 }

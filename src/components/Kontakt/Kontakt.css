@@ -22,7 +22,10 @@
 .contact-address h2 { margin-top: 8px; font-size: 1.5rem; }
 .contact-address address { font-style: normal; font-size: 1.0625rem; line-height: 1.6; }
 .contact-address > a { display: inline-flex; justify-content: space-between; align-items: center; gap: 26px; min-height: 48px; padding: 12px 16px; color: #fff; background: var(--ums-navy); font-weight: 700; }
+.contact-address > a { transition: background-color .18s ease-out; }
+.contact-address > a span { display: inline-block; transition: transform .18s ease-out; }
 .contact-address > a:hover { background: #304e6b; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .contact-address > a:hover span { transform: translateX(3px); } }
 @media(max-width: 900px) { .contact-people { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }.contact-address { grid-template-columns: 1fr 1fr; }.contact-address > a { grid-column: 1 / -1; justify-self: start; } }
 @media(max-width: 700px) { .contact-hero { grid-template-columns: 1fr; }.contact-hero__copy { padding-block: 44px; }.contact-hero > img { min-height: 0; height: 300px; }.contact-people { padding-block: 40px 48px; grid-template-columns: 1fr; gap: 34px; }.contact-person__links { margin-top: 16px; } }
 @media(max-width: 450px) { .contact-hero h1 { font-size: 3rem; }.contact-hero > img { height: 230px; }.contact-address { grid-template-columns: 1fr; gap: 18px; padding-block: 30px; }.contact-address > a { grid-column: auto; } }

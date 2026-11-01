@@ -11,7 +11,8 @@
 .project-entry { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(32px, 6vw, 88px); padding: 48px 0; border-bottom: 1px solid #d4dee6; }
 .project-entry:nth-child(even) .project-entry__image { order: 2; }
 .project-entry--featured { grid-template-columns: 1.25fr .75fr; padding-top: 24px; }
-.project-entry__image img { display: block; width: 100%; height: clamp(280px, 36vw, 520px); object-fit: cover; }
+.project-entry__image { overflow: hidden; }
+.project-entry__image img { display: block; width: 100%; height: clamp(280px, 36vw, 520px); object-fit: cover; transition: transform .35s ease-out; }
 .project-entry--featured .project-entry__image img { height: clamp(360px, 48vw, 650px); }
 .project-entry__body > .projects-eyebrow { color: #425d78; }
 .project-entry h2 { margin: 14px 0 24px; font-size: clamp(2.125rem, 4vw, 3.75rem); line-height: 1.05; letter-spacing: -.03em; }
@@ -24,5 +25,10 @@
 .projects-next > div:last-child { display: grid; gap: 10px; }
 .projects-next a { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 52px; padding: 12px 18px; border: 1px solid rgb(255 255 255 / 65%); font-weight: 700; }
 .projects-next a:focus-visible, .projects-next a:hover { outline: 2px solid var(--secondaryColor); outline-offset: 3px; }
+.projects-next a span { display: inline-block; transition: transform .18s ease-out; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-entry__image:hover img { transform: scale(1.025); }
+  .projects-next a:hover span { transform: translateX(3px); }
+}
 @media(max-width: 800px) { .projects-hero { grid-template-columns: 1fr; }.projects-hero__copy { padding-block: 48px; }.projects-hero > img { min-height: 0; height: 330px; }.project-entry, .project-entry--featured { grid-template-columns: 1fr; gap: 24px; padding-block: 34px; }.project-entry:nth-child(even) .project-entry__image { order: 0; }.project-entry__image img, .project-entry--featured .project-entry__image img { height: clamp(240px, 56vw, 420px); }.projects-next { grid-template-columns: 1fr; padding-block: 42px; } }
 @media(max-width: 450px) { .projects-hero h1 { font-size: 3rem; }.projects-hero > img { height: 250px; }.projects-list { padding-top: 12px; padding-bottom: 40px; }.project-entry dl > div { grid-template-columns: 1fr; gap: 4px; }.project-entry h2 { margin-bottom: 18px; } }

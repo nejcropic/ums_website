@@ -47,5 +47,5 @@
 - Preveri spremenjene strani pri najmanj 320, 390, 768, 1024 in 1440 px ter eno ležečo mobilno postavitev. Preglej dejanski prikaz v brskalniku, kadar je na voljo.
 - Preveri manjkajoče slike, napake v konzoli, neposredno odpiranje poti, notranjo navigacijo, tipkovnico in dotik. Preveri tudi domačo stran ter `/storitve` zaradi možnih regresij skupnih slogov.
 - Ne dodajaj testov, ki zgolj ponavljajo implementacijo. Uporabi smiselna funkcionalna in vizualna preverjanja; avtomatsko preverjanje dostopnosti, kadar je na voljo.
-- Pred zaključkom preglej `git diff --check` in obseg sprememb. `build/` je v tem repozitoriju že sleden: preveri tudi nove in odstranjene produkcijske datoteke, ne samo `build/index.html`.
+- Pred zaključkom preglej `git diff --check` in obseg sprememb. `build/` je generirana in prezrta mapa: ne dodajaj je v Git in ne uporabljaj `git add -f`. Produkcijsko različico pripravi z `npm run build`.
 - Končno poročilo napiši slovensko: kaj je spremenjeno, kako je preverjeno in katere vsebinske nejasnosti ostajajo. Ne trdi, da si preveril napravo ali brskalnik, ki ga nisi uporabil.

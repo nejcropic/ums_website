@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { sliderData } from "./BackgroundSliderData";
 import "./BackgroundSlider.css";
 
 export default function BackgroundSlider() {
   const [current, setCurrent] = useState(0);
+  const [incoming, setIncoming] = useState<number | null>(null);
+  const [incomingLoaded, setIncomingLoaded] = useState(false);
+  const incomingRef = useRef<{ index: number; requestId: number } | null>(null);
+  const requestSequence = useRef(0);
   const [paused, setPaused] = useState(false);
   const [engaged, setEngaged] = useState(false);
   const reducedMotion = useReducedMotion();
@@ -16,20 +20,53 @@ export default function BackgroundSlider() {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
   useEffect(() => {
-    if (paused || engaged || reducedMotion || !visible) return;
-    const timer = window.setInterval(
-      () => setCurrent((index) => (index + 1) % sliderData.length),
-      6000,
-    );
+    if (paused || engaged || reducedMotion !== false || !visible) return;
+    const timer = window.setInterval(() => {
+      const baseIndex = incomingRef.current?.index ?? current;
+      const index = (baseIndex + 1) % sliderData.length;
+      requestSequence.current += 1;
+      incomingRef.current = { index, requestId: requestSequence.current };
+      setIncoming(index);
+      setIncomingLoaded(false);
+    }, 6000);
     return () => window.clearInterval(timer);
-  }, [paused, engaged, reducedMotion, visible]);
+  }, [paused, engaged, reducedMotion, visible, current]);
+
+  useEffect(() => {
+    if (incoming === null || !incomingLoaded) return;
+    const requestId = incomingRef.current?.requestId;
+    const timer = window.setTimeout(() => {
+      if (incomingRef.current?.requestId !== requestId) return;
+      setCurrent(incoming);
+      incomingRef.current = null;
+      setIncoming(null);
+      setIncomingLoaded(false);
+    }, reducedMotion === false ? 500 : 0);
+    return () => window.clearTimeout(timer);
+  }, [incoming, incomingLoaded, reducedMotion]);
 
   const slide = sliderData[current];
+  const incomingRequestId =
+    incoming !== null && incomingRef.current?.index === incoming
+      ? incomingRef.current.requestId
+      : null;
+  const requestSlide = (index: number) => {
+    if (reducedMotion !== false) {
+      setCurrent(index);
+      incomingRef.current = null;
+      setIncoming(null);
+      setIncomingLoaded(false);
+      return;
+    }
+    requestSequence.current += 1;
+    incomingRef.current = { index, requestId: requestSequence.current };
+    setIncoming(index);
+    setIncomingLoaded(false);
+  };
   const changeSlide = (direction: number) => {
     setPaused(true);
-    setCurrent(
-      (index) => (index + direction + sliderData.length) % sliderData.length,
-    );
+    const baseIndex = incomingRef.current?.index ?? current;
+    requestSlide((baseIndex + direction + sliderData.length) % sliderData.length);
   };
   return (
     <div
@@ -45,6 +82,35 @@ export default function BackgroundSlider() {
         alt=""
         fetchPriority="high"
       />
+      {incoming !== null && (
+        <motion.img
+          key={sliderData[incoming].image.src}
+          className="home-slider__image home-slider__image--incoming"
+          {...sliderData[incoming].image}
+          sizes="100vw"
+          alt=""
+          aria-hidden="true"
+          onLoad={(event) => {
+            const requestId = incomingRequestId;
+            void event.currentTarget
+              .decode()
+              .catch(() => undefined)
+              .then(() => {
+                if (incomingRef.current?.requestId === requestId) setIncomingLoaded(true);
+              });
+          }}
+          onError={() => {
+            if (incomingRef.current?.requestId === incomingRequestId) {
+              incomingRef.current = null;
+              setIncoming(null);
+              setIncomingLoaded(false);
+            }
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: incomingLoaded ? 1 : 0 }}
+          transition={{ duration: reducedMotion === false ? 0.48 : 0, ease: [0.16, 1, 0.3, 1] }}
+        />
+      )}
       <div className="home-slider__shade" />
       <div
         className="home-slider__caption"
@@ -68,7 +134,7 @@ export default function BackgroundSlider() {
           {String(current + 1).padStart(2, "0")} /{" "}
           {String(sliderData.length).padStart(2, "0")}
         </span>
-        {!reducedMotion && (
+        {reducedMotion === false && (
           <button
             type="button"
             onClick={() => setPaused(!paused)}

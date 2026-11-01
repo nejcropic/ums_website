@@ -23,7 +23,7 @@ npm run preview
 
 `build/` vsebuje produkcijsko stran. Na gostovanje prenesite vsebino te mape, ne razvojnih datotek. Strežnik mora neobstoječe poti usmeriti na `index.html`, da neposredno odpiranje in osvežitev poti `/storitve`, `/reference`, `/akt_projekti`, `/o_podjetju` in `/kontakt` delujeta z BrowserRouterjem. Objava je predvidena v korenu domene https://www.ums.si/.
 
-Mapa `build/` je bila že vključena v Git. Zaradi obstoječega načina objave ni več prezrta: pri shranjevanju produkcijske gradnje vključite tudi nove datoteke `build/assets/`, ne samo spremenjenega `build/index.html`.
+Mapa `build/` je generirana in izključena iz Gita. Pred objavo jo pripravite z `npm run build`, nato na gostovanje prenesite celotno vsebino te mape. Pri avtomatizirani objavi naj gostovanje izvede gradnjo in uporabi `build/` kot izhodno mapo.
 
 ## Tehnična posodobitev
 

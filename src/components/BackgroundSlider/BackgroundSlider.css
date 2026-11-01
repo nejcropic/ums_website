@@ -4,11 +4,16 @@
   isolation: isolate;
 }
 .home-slider__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+}
+.home-slider__image--incoming {
+  z-index: 1;
 }
 .home-slider__shade {
   position: absolute;

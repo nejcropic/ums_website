@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { currentProjects } from "../projects/projects";
+import { Reveal, RevealItem } from "../components/Reveal/Reveal";
 import "../components/AktualniProjekti/AktualniProjekti.css";
 
 function Akt_projekti() {
@@ -26,9 +27,10 @@ function Akt_projekti() {
           />
         )}
       </header>
-      <section className="projects-list" aria-label="Pregled projektov">
+      <Reveal as="section" className="projects-list" label="Pregled projektov">
         {currentProjects.map((project, index) => (
-          <article
+          <RevealItem
+            order={index}
             className={`project-entry${index === 0 ? " project-entry--featured" : ""}`}
             key={project.id}
           >
@@ -64,10 +66,10 @@ function Akt_projekti() {
                 </div>
               </dl>
             </div>
-          </article>
+          </RevealItem>
         ))}
-      </section>
-      <section className="projects-next">
+      </Reveal>
+      <Reveal as="section" className="projects-next">
         <div>
           <p className="projects-eyebrow">Nadaljujte</p>
           <h2>Več o projektih UMS</h2>
@@ -80,7 +82,7 @@ function Akt_projekti() {
             Pogovorimo se o vašem projektu <span aria-hidden="true">↗</span>
           </Link>
         </div>
-      </section>
+      </Reveal>
     </div>
   );
 }

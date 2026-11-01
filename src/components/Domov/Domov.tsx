@@ -4,6 +4,8 @@ import { Logo } from "../../images";
 import BackgroundSlider from "../BackgroundSlider/BackgroundSlider";
 import { services } from "./homeContent";
 import { projects } from "../../projects/projects";
+import { Reveal } from "../Reveal/Reveal";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import "./Domov.css";
 
 const featuredProjects = projects.slice(0, 3);
@@ -11,6 +13,7 @@ const featuredProjects = projects.slice(0, 3);
 export default function Domov() {
   const [selectedProjectId, setSelectedProjectId] = useState(featuredProjects[0]?.id ?? "");
   const project = featuredProjects.find((item) => item.id === selectedProjectId) ?? featuredProjects[0];
+  const reducedMotion = useReducedMotion();
 
   return (
     <>
@@ -35,10 +38,11 @@ export default function Domov() {
           </a>
         </section>
 
-        <section
+        <Reveal
+          as="section"
           id="o-nas"
           className="home-intro"
-          aria-labelledby="intro-title"
+          labelledBy="intro-title"
         >
           <div>
             <p className="home-eyebrow">UMS STORITVE d.o.o.</p>
@@ -61,7 +65,7 @@ export default function Domov() {
               Spoznajte UMS <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </section>
+        </Reveal>
 
         <section className="home-services" aria-labelledby="services-title">
           <div className="home-section-heading">
@@ -74,7 +78,7 @@ export default function Domov() {
               vašega projekta.
             </p>
           </div>
-          <div className="home-services__grid">
+          <Reveal className="home-services__grid">
             {services.map((service, index) => (
               <Link
                 key={service.id}
@@ -99,10 +103,10 @@ export default function Domov() {
                 </span>
               </Link>
             ))}
-          </div>
+          </Reveal>
         </section>
 
-        <section className="home-projects" aria-labelledby="projects-title">
+        <Reveal as="section" className="home-projects" labelledBy="projects-title">
           <div className="home-section-heading">
             <div>
               <p className="home-eyebrow">Naše reference</p>
@@ -118,33 +122,46 @@ export default function Domov() {
             role="region"
             aria-label="Izbrana referenca"
           >
-            <img
-              className="home-project__image"
-              src={project.photo}
-              srcSet={project.srcSet}
-              sizes="(max-width: 700px) 100vw, 60vw"
-              loading="lazy"
-              decoding="async"
-              alt={project.title}
-            />
-            <div className="home-project__body">
-              <p className="home-eyebrow">Naša referenca</p>
-              <h3>{project.title}</h3>
-              {project.description && <p>{project.description}</p>}
-              <dl>
-                {project.location && <div>
-                  <dt>Lokacija</dt>
-                  <dd>{project.location}</dd>
-                </div>}
-                <div>
-                  <dt>Leto projekta</dt>
-                  <dd>{project.year}</dd>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                className="home-project__content"
+                key={project.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reducedMotion === false ? 0.22 : 0, ease: "easeOut" }}
+              >
+                <div className="home-project__visual">
+                  <img
+                    className="home-project__image"
+                    src={project.photo}
+                    srcSet={project.srcSet}
+                    sizes="(max-width: 700px) 100vw, 60vw"
+                    loading="lazy"
+                    decoding="async"
+                    alt={project.title}
+                  />
                 </div>
-              </dl>
-              <Link className="home-text-link" to="/reference">
-                Oglejte si reference <span aria-hidden="true">→</span>
-              </Link>
-            </div>
+                <div className="home-project__body">
+                  <p className="home-eyebrow">Naša referenca</p>
+                  <h3>{project.title}</h3>
+                  {project.description && <p>{project.description}</p>}
+                  <dl>
+                    {project.location && <div>
+                      <dt>Lokacija</dt>
+                      <dd>{project.location}</dd>
+                    </div>}
+                    <div>
+                      <dt>Leto projekta</dt>
+                      <dd>{project.year}</dd>
+                    </div>
+                  </dl>
+                  <Link className="home-text-link" to="/reference">
+                    Oglejte si reference <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
           <div
             className="home-project-picker"
@@ -166,9 +183,9 @@ export default function Domov() {
           <p className="sr-only" aria-live="polite" aria-atomic="true">
             Izbrana referenca: {project.title}{project.location ? `, ${project.location}` : ""}, {project.year}.
           </p>
-        </section>
+        </Reveal>
 
-        <section className="home-contact" aria-labelledby="contact-title">
+        <Reveal as="section" className="home-contact" labelledBy="contact-title">
           <div>
             <p className="home-eyebrow">Stopimo v stik</p>
             <h2 id="contact-title">
@@ -188,7 +205,7 @@ export default function Domov() {
               Vsi kontakti <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </section>
+        </Reveal>
       </div>
     </>
   );
